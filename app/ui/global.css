@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+@plugin "@tailwindcss/forms";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --grid-template-columns-13: repeat(13, minmax(0, 1fr));
+
+  /* Brand / Palette Colors */
+  --color-blue-400: #2589FE;
+  --color-blue-500: #0070F3;
+  --color-blue-600: #2F6FEB;
+
+  /* Semantic Tokens */
+  --color-primary: #0070F3;
+  --color-primary-foreground: #ffffff;
+  --color-primary-hover: #2589FE;
+  --color-primary-active: #2F6FEB;
+
+  /* Keyframes & Animations */
+  --animate-shimmer: shimmer 2s infinite;
+
+  @keyframes shimmer {
+    100% {
+      transform: translateX(100%);
+    }
+  }
+}
+
+/* Custom Utilities */
+@utility triangle-top {
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 26px solid currentColor;
+}
+
+/* Base styles */
+@layer base {
+  input[type='number'] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+  }
+
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
