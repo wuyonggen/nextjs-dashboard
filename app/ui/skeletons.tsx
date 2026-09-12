@@ -1,6 +1,6 @@
 // Loading animation
 const shimmer =
-  'before:absolute before:inset-0 before:-translate-x-full before:animate-shimmer before:bg-gradient-to-r before:from-transparent before:via-white/60 before:to-transparent';
+  'before:absolute before:inset-0 before:-translate-x-full before:animate-shimmer before:bg-linear-to-r before:from-transparent before:via-white/60 before:to-transparent';
 
 export function CardSkeleton() {
   return (
@@ -131,8 +131,8 @@ export function TableRowSkeleton() {
       {/* Actions */}
       <td className="whitespace-nowrap py-3 pl-6 pr-3">
         <div className="flex justify-end gap-3">
-          <div className="size-[38px] rounded bg-gray-100"></div>
-          <div className="size-[38px] rounded bg-gray-100"></div>
+          <div className="size-9.5 rounded bg-gray-100"></div>
+          <div className="size-9.5 rounded bg-gray-100"></div>
         </div>
       </td>
     </tr>

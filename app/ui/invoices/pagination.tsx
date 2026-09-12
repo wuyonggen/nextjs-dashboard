@@ -66,10 +66,10 @@ function PaginationNumber({
   isActive: boolean;
 }) {
   const className = cn(
-    "flex size-10 items-center justify-center text-sm border border-gray-200 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500",
+    "flex size-10 items-center justify-center text-sm border border-gray-200 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary",
     (position === "first" || position === "single") && "rounded-l-md",
     (position === "last" || position === "single") && "rounded-r-md",
-    isActive && "z-10 bg-blue-600 border-blue-600 text-white",
+    isActive && "z-10 bg-primary border-primary text-primary-foreground font-medium",
     !isActive && position !== "middle" && "hover:bg-gray-100",
     position === "middle" && "text-gray-300",
   );
@@ -93,7 +93,7 @@ function PaginationArrow({
   isDisabled?: boolean;
 }) {
   const className = cn(
-    "flex size-10 items-center justify-center rounded-md border border-gray-200 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500",
+    "flex size-10 items-center justify-center rounded-md border border-gray-200 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary",
     isDisabled && "pointer-events-none text-gray-300",
     !isDisabled && "hover:bg-gray-100",
     direction === "left" ? "mr-2 md:mr-4" : "ml-2 md:ml-4",
