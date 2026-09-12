@@ -7,16 +7,16 @@
 @theme {
   --grid-template-columns-13: repeat(13, minmax(0, 1fr));
 
-  /* Brand / Palette Colors */
-  --color-blue-400: #2589FE;
-  --color-blue-500: #0070F3;
-  --color-blue-600: #2F6FEB;
+  /* Brand / Palette Colors (OKLCH for perceptual uniformity) */
+  --color-blue-400: oklch(67% 0.17 255);
+  --color-blue-500: oklch(62% 0.19 255);
+  --color-blue-600: oklch(56% 0.21 255);
 
   /* Semantic Tokens */
-  --color-primary: #0070F3;
-  --color-primary-foreground: #ffffff;
-  --color-primary-hover: #2589FE;
-  --color-primary-active: #2F6FEB;
+  --color-primary: oklch(62% 0.19 255);
+  --color-primary-foreground: oklch(100% 0 0);
+  --color-primary-hover: oklch(67% 0.17 255);
+  --color-primary-active: oklch(56% 0.21 255);
 
   /* Keyframes & Animations */
   --animate-shimmer: shimmer 2s infinite;
