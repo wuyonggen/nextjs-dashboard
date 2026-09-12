@@ -21,11 +21,7 @@ export default function InvoiceStatus({ status }: { status: string }) {
   const isPaid = status === 'paid';
 
   return (
-    <span
-      className={cn(
-        statusBadgeVariants({ status: isPaid ? 'paid' : 'pending' }),
-      )}
-    >
+    <span className={cn(statusBadgeVariants({ status: isPaid ? 'paid' : 'pending' }))}>
       {isPaid ? (
         <>
           Paid
@@ -40,4 +36,3 @@ export default function InvoiceStatus({ status }: { status: string }) {
     </span>
   );
 }
-

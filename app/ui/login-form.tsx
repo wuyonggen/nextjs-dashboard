@@ -1,45 +1,45 @@
-"use client";
+'use client';
 
-import { lusitana } from "@/app/ui/fonts";
+import { lusitana } from '@/app/ui/fonts';
 import {
   AtSymbolIcon,
   KeyIcon,
   ExclamationCircleIcon,
   UserIcon,
-} from "@heroicons/react/24/outline";
-import { ArrowRightIcon } from "@heroicons/react/20/solid";
-import { Button } from "./button";
-import { cn } from "@/app/lib/utils";
-import { useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
-import { authClient } from "@/app/lib/auth-client";
+} from '@heroicons/react/24/outline';
+import { ArrowRightIcon } from '@heroicons/react/20/solid';
+import { Button } from './button';
+import { cn } from '@/app/lib/utils';
+import { useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { authClient } from '@/app/lib/auth-client';
 
 export default function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl") || "/dashboard";
+  const callbackUrl = searchParams.get('callbackUrl') || '/dashboard';
 
-  const [mode, setMode] = useState<"signin" | "signup">("signin");
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [mode, setMode] = useState<'signin' | 'signup'>('signin');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const [isPending, setIsPending] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setError("");
+    setError('');
     setIsPending(true);
 
     try {
-      if (mode === "signin") {
+      if (mode === 'signin') {
         const { error: signInError } = await authClient.signIn.email({
           email,
           password,
         });
 
         if (signInError) {
-          setError(signInError.message || "Invalid email or password.");
+          setError(signInError.message || 'Invalid email or password.');
           setIsPending(false);
           return;
         }
@@ -54,7 +54,7 @@ export default function LoginForm() {
         });
 
         if (signUpError) {
-          setError(signUpError.message || "Failed to create account.");
+          setError(signUpError.message || 'Failed to create account.');
           setIsPending(false);
           return;
         }
@@ -63,36 +63,33 @@ export default function LoginForm() {
         router.refresh();
       }
     } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : "An unexpected error occurred.");
+      setError(err instanceof Error ? err.message : 'An unexpected error occurred.');
       setIsPending(false);
     }
   };
 
   const handleFillDemo = () => {
-    setEmail("user@nextmail.com");
-    setPassword("password128904");
-    setError("");
+    setEmail('user@nextmail.com');
+    setPassword('password128904');
+    setError('');
   };
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-      <div className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8">
-        <h1 className={cn(lusitana.className, "mb-3 text-2xl font-semibold")}>
-          {mode === "signin" ? "Please log in to continue." : "Create an account."}
+      <div className="flex-1 rounded-lg bg-gray-50 px-6 pt-8 pb-4">
+        <h1 className={cn(lusitana.className, 'mb-3 text-2xl font-semibold')}>
+          {mode === 'signin' ? 'Please log in to continue.' : 'Create an account.'}
         </h1>
 
         <div className="w-full">
-          {mode === "signup" && (
+          {mode === 'signup' && (
             <div className="mb-4">
-              <label
-                className="mb-2 block text-xs font-medium text-gray-900"
-                htmlFor="name"
-              >
+              <label className="mb-2 block text-xs font-medium text-gray-900" htmlFor="name">
                 Name
               </label>
               <div className="relative">
                 <input
-                  className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm transition-colors placeholder:text-gray-500 focus-visible:border-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                  className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm transition-colors placeholder:text-gray-500 focus-visible:border-transparent focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
                   id="name"
                   type="text"
                   name="name"
@@ -101,21 +98,18 @@ export default function LoginForm() {
                   placeholder="Enter your name"
                   required
                 />
-                <UserIcon className="pointer-events-none absolute left-3 top-1/2 size-4.5 -translate-y-1/2 text-gray-500 transition-colors peer-focus:text-gray-900" />
+                <UserIcon className="pointer-events-none absolute top-1/2 left-3 size-4.5 -translate-y-1/2 text-gray-500 transition-colors peer-focus:text-gray-900" />
               </div>
             </div>
           )}
 
           <div>
-            <label
-              className="mb-2 block text-xs font-medium text-gray-900"
-              htmlFor="email"
-            >
+            <label className="mb-2 block text-xs font-medium text-gray-900" htmlFor="email">
               Email
             </label>
             <div className="relative">
               <input
-                className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm transition-colors placeholder:text-gray-500 focus-visible:border-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm transition-colors placeholder:text-gray-500 focus-visible:border-transparent focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
                 id="email"
                 type="email"
                 name="email"
@@ -124,20 +118,17 @@ export default function LoginForm() {
                 placeholder="Enter your email address"
                 required
               />
-              <AtSymbolIcon className="pointer-events-none absolute left-3 top-1/2 size-4.5 -translate-y-1/2 text-gray-500 transition-colors peer-focus:text-gray-900" />
+              <AtSymbolIcon className="pointer-events-none absolute top-1/2 left-3 size-4.5 -translate-y-1/2 text-gray-500 transition-colors peer-focus:text-gray-900" />
             </div>
           </div>
 
           <div className="mt-4">
-            <label
-              className="mb-2 block text-xs font-medium text-gray-900"
-              htmlFor="password"
-            >
+            <label className="mb-2 block text-xs font-medium text-gray-900" htmlFor="password">
               Password
             </label>
             <div className="relative">
               <input
-                className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm transition-colors placeholder:text-gray-500 focus-visible:border-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm transition-colors placeholder:text-gray-500 focus-visible:border-transparent focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
                 id="password"
                 type="password"
                 name="password"
@@ -147,19 +138,19 @@ export default function LoginForm() {
                 required
                 minLength={6}
               />
-              <KeyIcon className="pointer-events-none absolute left-3 top-1/2 size-4.5 -translate-y-1/2 text-gray-500 transition-colors peer-focus:text-gray-900" />
+              <KeyIcon className="pointer-events-none absolute top-1/2 left-3 size-4.5 -translate-y-1/2 text-gray-500 transition-colors peer-focus:text-gray-900" />
             </div>
           </div>
         </div>
 
         <Button className="mt-6 w-full" disabled={isPending} aria-disabled={isPending}>
           {isPending
-            ? mode === "signin"
-              ? "Logging in..."
-              : "Creating account..."
-            : mode === "signin"
-            ? "Log in"
-            : "Sign up"}
+            ? mode === 'signin'
+              ? 'Logging in...'
+              : 'Creating account...'
+            : mode === 'signin'
+              ? 'Log in'
+              : 'Sign up'}
           <ArrowRightIcon className="ml-auto size-5 text-gray-50" />
         </Button>
 
@@ -175,14 +166,14 @@ export default function LoginForm() {
 
         <div className="mt-4 flex flex-col items-center gap-2 border-t border-gray-200 pt-3 text-xs text-gray-600">
           <div>
-            {mode === "signin" ? (
+            {mode === 'signin' ? (
               <span>
-                Don&apos;t have an account?{" "}
+                Don&apos;t have an account?{' '}
                 <button
                   type="button"
                   onClick={() => {
-                    setMode("signup");
-                    setError("");
+                    setMode('signup');
+                    setError('');
                   }}
                   className="font-medium text-primary hover:underline"
                 >
@@ -191,12 +182,12 @@ export default function LoginForm() {
               </span>
             ) : (
               <span>
-                Already have an account?{" "}
+                Already have an account?{' '}
                 <button
                   type="button"
                   onClick={() => {
-                    setMode("signin");
-                    setError("");
+                    setMode('signin');
+                    setError('');
                   }}
                   className="font-medium text-primary hover:underline"
                 >
@@ -206,11 +197,11 @@ export default function LoginForm() {
             )}
           </div>
 
-          {mode === "signin" && (
+          {mode === 'signin' && (
             <button
               type="button"
               onClick={handleFillDemo}
-              className="text-gray-500 hover:text-gray-800 underline transition-colors"
+              className="text-gray-500 underline transition-colors hover:text-gray-800"
             >
               Fill demo account (user@nextmail.com)
             </button>

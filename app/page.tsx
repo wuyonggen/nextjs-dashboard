@@ -1,9 +1,9 @@
-import AcmeLogo from "@/app/ui/acme-logo";
-import { ArrowRightIcon } from "@heroicons/react/24/outline";
-import Link from "next/link";
-import { lusitana } from "./ui/fonts";
-import Image from "next/image";
-import { cn } from "./lib/utils";
+import AcmeLogo from '@/app/ui/acme-logo';
+import { ArrowRightIcon } from '@heroicons/react/24/outline';
+import Link from 'next/link';
+import { lusitana } from './ui/fonts';
+import Image from 'next/image';
+import { cn } from './lib/utils';
 
 export default function Page() {
   return (
@@ -14,8 +14,13 @@ export default function Page() {
       <div className="mt-4 flex grow flex-col gap-4 md:flex-row">
         <div className="flex flex-col justify-center gap-6 rounded-lg bg-gray-50 px-6 py-10 md:w-2/5 md:px-20">
           <div className="relative triangle-top text-black" />
-          <p className={cn("text-xl text-gray-800 md:text-3xl md:leading-normal", lusitana.className)}>
-            <strong>Welcome to Acme.</strong> This is the example for the{" "}
+          <p
+            className={cn(
+              'text-xl text-gray-800 md:text-3xl md:leading-normal',
+              lusitana.className,
+            )}
+          >
+            <strong>Welcome to Acme.</strong> This is the example for the{' '}
             <a href="https://nextjs.org/learn/" className="text-primary hover:underline">
               Next.js Learn Course
             </a>
@@ -23,7 +28,7 @@ export default function Page() {
           </p>
           <Link
             href="/login"
-            className="flex items-center gap-5 self-start rounded-lg bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary-hover active:bg-primary-active focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 md:text-base"
+            className="flex items-center gap-5 self-start rounded-lg bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary-hover focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 active:bg-primary-active md:text-base"
           >
             <span>Log in</span> <ArrowRightIcon className="size-5 md:size-6" />
           </Link>

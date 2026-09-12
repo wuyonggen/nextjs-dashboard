@@ -1,4 +1,4 @@
-import sql from "./db";
+import sql from './db';
 import {
   CustomerField,
   CustomersTableType,
@@ -6,25 +6,25 @@ import {
   InvoicesTable,
   LatestInvoiceRaw,
   Revenue,
-} from "./definitions";
-import { formatCurrency } from "./utils";
+} from './definitions';
+import { formatCurrency } from './utils';
 
 export async function fetchRevenue() {
   try {
     // Artificially delay a response for demo purposes.
     // Don't do this in production :)
 
-    console.log("Fetching revenue data...");
+    console.log('Fetching revenue data...');
     await new Promise((resolve) => setTimeout(resolve, 3000));
 
     const data = await sql<Revenue[]>`SELECT * FROM revenue`;
 
-    console.log("Data fetch completed after 3 seconds.");
+    console.log('Data fetch completed after 3 seconds.');
 
     return data;
   } catch (error) {
-    console.error("Database Error:", error);
-    throw new Error("Failed to fetch revenue data.");
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch revenue data.');
   }
 }
 
@@ -43,8 +43,8 @@ export async function fetchLatestInvoices() {
     }));
     return latestInvoices;
   } catch (error) {
-    console.error("Database Error:", error);
-    throw new Error("Failed to fetch the latest invoices.");
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch the latest invoices.');
   }
 }
 
@@ -60,12 +60,16 @@ export async function fetchCardData() {
          SUM(CASE WHEN status = 'pending' THEN amount ELSE 0 END) AS "pending"
          FROM invoices`;
 
-    const data = await Promise.all([invoiceCountPromise, customerCountPromise, invoiceStatusPromise]);
+    const data = await Promise.all([
+      invoiceCountPromise,
+      customerCountPromise,
+      invoiceStatusPromise,
+    ]);
 
-    const numberOfInvoices = Number(data[0][0].count ?? "0");
-    const numberOfCustomers = Number(data[1][0].count ?? "0");
-    const totalPaidInvoices = formatCurrency(data[2][0].paid ?? "0");
-    const totalPendingInvoices = formatCurrency(data[2][0].pending ?? "0");
+    const numberOfInvoices = Number(data[0][0].count ?? '0');
+    const numberOfCustomers = Number(data[1][0].count ?? '0');
+    const totalPaidInvoices = formatCurrency(data[2][0].paid ?? '0');
+    const totalPendingInvoices = formatCurrency(data[2][0].pending ?? '0');
 
     return {
       numberOfCustomers,
@@ -74,8 +78,8 @@ export async function fetchCardData() {
       totalPendingInvoices,
     };
   } catch (error) {
-    console.error("Database Error:", error);
-    throw new Error("Failed to fetch card data.");
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch card data.');
   }
 }
 
@@ -107,8 +111,8 @@ export async function fetchFilteredInvoices(query: string, currentPage: number) 
 
     return invoices;
   } catch (error) {
-    console.error("Database Error:", error);
-    throw new Error("Failed to fetch invoices.");
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch invoices.');
   }
 }
 
@@ -128,8 +132,8 @@ export async function fetchInvoicesPages(query: string) {
     const totalPages = Math.ceil(Number(data[0].count) / ITEMS_PER_PAGE);
     return totalPages;
   } catch (error) {
-    console.error("Database Error:", error);
-    throw new Error("Failed to fetch total number of invoices.");
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch total number of invoices.');
   }
 }
 
@@ -151,11 +155,11 @@ export async function fetchInvoiceById(id: string) {
       amount: invoice.amount / 100,
     }));
 
-    console.log("Fetched invoice by ID:", invoice);
+    console.log('Fetched invoice by ID:', invoice);
     return invoice[0];
   } catch (error) {
-    console.error("Database Error:", error);
-    throw new Error("Failed to fetch invoice.");
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch invoice.');
   }
 }
 
@@ -171,8 +175,8 @@ export async function fetchCustomers() {
 
     return customers;
   } catch (err) {
-    console.error("Database Error:", err);
-    throw new Error("Failed to fetch all customers.");
+    console.error('Database Error:', err);
+    throw new Error('Failed to fetch all customers.');
   }
 }
 
@@ -204,7 +208,7 @@ export async function fetchFilteredCustomers(query: string) {
 
     return customers;
   } catch (err) {
-    console.error("Database Error:", err);
-    throw new Error("Failed to fetch customer table.");
+    console.error('Database Error:', err);
+    throw new Error('Failed to fetch customer table.');
   }
 }

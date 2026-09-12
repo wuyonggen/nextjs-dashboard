@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import { useSearchParams, usePathname, useRouter } from "next/navigation";
-import { useDebouncedCallback } from "use-debounce";
+import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
+import { useSearchParams, usePathname, useRouter } from 'next/navigation';
+import { useDebouncedCallback } from 'use-debounce';
 
 export default function Search({ placeholder }: { placeholder: string }) {
   const searchParams = useSearchParams();
@@ -12,11 +12,11 @@ export default function Search({ placeholder }: { placeholder: string }) {
   const handleSearch = useDebouncedCallback((term: string) => {
     console.log(`Searching...${term}`);
     const params = new URLSearchParams(searchParams);
-    params.set("page", "1");
+    params.set('page', '1');
     if (term) {
-      params.set("query", term);
+      params.set('query', term);
     } else {
-      params.delete("query");
+      params.delete('query');
     }
     replace(`${pathname}?${params.toString()}`);
   }, 300);
@@ -28,12 +28,12 @@ export default function Search({ placeholder }: { placeholder: string }) {
       </label>
       <input
         id="search"
-        className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm transition-colors placeholder:text-gray-500 focus-visible:border-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+        className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm transition-colors placeholder:text-gray-500 focus-visible:border-transparent focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
         placeholder={placeholder}
         onChange={(e) => handleSearch(e.target.value)}
-        defaultValue={searchParams.get("query")?.toString()}
+        defaultValue={searchParams.get('query')?.toString()}
       />
-      <MagnifyingGlassIcon className="absolute left-3 top-1/2 size-4.5 -translate-y-1/2 text-gray-500 transition-colors peer-focus:text-gray-900" />
+      <MagnifyingGlassIcon className="absolute top-1/2 left-3 size-4.5 -translate-y-1/2 text-gray-500 transition-colors peer-focus:text-gray-900" />
     </div>
   );
 }

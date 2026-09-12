@@ -8,11 +8,7 @@ interface Breadcrumb {
   active?: boolean;
 }
 
-export default function Breadcrumbs({
-  breadcrumbs,
-}: {
-  breadcrumbs: Breadcrumb[];
-}) {
+export default function Breadcrumbs({ breadcrumbs }: { breadcrumbs: Breadcrumb[] }) {
   return (
     <nav aria-label="Breadcrumb" className="mb-6 block">
       <ol className={cn(lusitana.className, 'flex text-xl md:text-2xl')}>
@@ -27,7 +23,7 @@ export default function Breadcrumbs({
           >
             <Link
               href={breadcrumb.href}
-              className="rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+              className="rounded focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none"
             >
               {breadcrumb.label}
             </Link>

@@ -13,8 +13,7 @@ export const buttonVariants = cva(
           'bg-gray-100 text-gray-700 hover:bg-gray-200 active:bg-gray-300 focus-visible:ring-gray-400',
         outline:
           'border border-gray-200 bg-white text-gray-700 hover:bg-gray-100 focus-visible:ring-gray-400',
-        ghost:
-          'text-gray-700 hover:bg-gray-100 focus-visible:ring-gray-400',
+        ghost: 'text-gray-700 hover:bg-gray-100 focus-visible:ring-gray-400',
         destructive:
           'bg-red-500 text-white hover:bg-red-400 active:bg-red-600 focus-visible:ring-red-500',
       },
@@ -33,8 +32,7 @@ export const buttonVariants = cva(
 );
 
 export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof buttonVariants> {
   children?: React.ReactNode;
 }
 
@@ -48,13 +46,8 @@ export function Button({
   ...props
 }: ButtonProps & { ref?: React.Ref<HTMLButtonElement> }) {
   return (
-    <button
-      ref={ref}
-      className={cn(buttonVariants({ variant, size, className }))}
-      {...props}
-    >
+    <button ref={ref} className={cn(buttonVariants({ variant, size, className }))} {...props}>
       {children}
     </button>
   );
 }
-
